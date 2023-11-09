@@ -37,7 +37,6 @@ public class Main {
                     }
                 }
 
-                // Si on a gagné, on sort de la boucle do-while
                 if (remainingCases == 0) {
                     break;
                 }
@@ -45,7 +44,7 @@ public class Main {
             } while (true);
 
             System.out.println("Nombre total de simulations : " + totalSimulations);
-            break; // Ajout pour arrêter la boucle infinie
+            break;
         }
     }
 }
