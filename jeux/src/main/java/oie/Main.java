@@ -1,41 +1,51 @@
 package oie;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        int totalCases = 20;
-        int remainingCases = totalCases;
-        int throwsCount = 5;
-
         Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < throwsCount; i++) {
-            System.out.println("Appuyez sur Entrée pour lancer le dé.");
-            scanner.nextLine();
+        int totalSimulations = 0;
 
-            int diceRoll = random.nextInt(6) + 1;
-            remainingCases -= diceRoll;
+        while (true) {
+            int totalCases = 20;
+            int remainingCases;
 
-            System.out.println("Lancer de dé : " + diceRoll);
-            System.out.println("Cases restantes : " + remainingCases);
+            do {
+                remainingCases = totalCases;
 
-            if (remainingCases == 0) {
-                System.out.println("Félicitations, vous avez gagné!");
-                break;
-            } else if (remainingCases < 0) {
-                System.out.println("Dommage, vous avez perdu.");
-                break;
-            }
+                for (int i = 0; i < 5; i++) {
+                    int diceRoll = random.nextInt(6) + 1;
+                    remainingCases -= diceRoll;
 
-            if (i == throwsCount - 1) {
-                System.out.println("Vous n'avez pas atteint 20 cases en 5 lancers. Essayez à nouveau.");
-            }
+                    System.out.println("Lancer de dé : " + diceRoll);
+                    System.out.println("Cases restantes : " + remainingCases);
+
+                    if (remainingCases == 0) {
+                        System.out.println("Félicitations, vous avez gagné!");
+                        totalSimulations++;
+                        break;
+                    } else if (remainingCases < 0) {
+                        System.out.println("Dommage, vous avez perdu. Réessayez.");
+                        break;
+                    }
+
+                    if (i == 4) {
+                        System.out.println("Vous n'avez pas atteint 20 cases en 5 lancers. Réessayez.");
+                    }
+                }
+
+                // Si on a gagné, on sort de la boucle do-while
+                if (remainingCases == 0) {
+                    break;
+                }
+
+            } while (true);
+
+            System.out.println("Nombre total de simulations : " + totalSimulations);
+            break; // Ajout pour arrêter la boucle infinie
         }
-
-        scanner.close();
     }
 }
