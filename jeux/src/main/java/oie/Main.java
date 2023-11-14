@@ -7,20 +7,19 @@ public class Main {
     public static void main(String[] args) {
         Random random = new Random();
         int totalSimulations = 0;
-        int somme; // Déplacer la déclaration de somme à l'extérieur de la boucle
+        int somme; 
 
         do {
-            somme = 0; // Initialiser somme à l'intérieur de la boucle
+            somme = 0; 
 
             for (int i = 0; i < 5; i++) {
-                int lancer = random.nextInt(6) + 1; // Génère un nombre aléatoire entre 1 et 6
+                int lancer = random.nextInt(6) + 1; 
                 System.out.println("Lancer " + (i + 1) + ": " + lancer);
                 somme += lancer;
             }
 
             System.out.println("Somme finale : " + somme);
 
-            // Vérifier si le joueur a gagné, perdu ou est resté à 20
             String resultat = (somme == 20) ? "Gagné" : "Perdu";
             System.out.println("Résultat : " + resultat);
 
