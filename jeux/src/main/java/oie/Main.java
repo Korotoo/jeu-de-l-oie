@@ -6,45 +6,27 @@ public class Main {
 
     public static void main(String[] args) {
         Random random = new Random();
-
         int totalSimulations = 0;
 
-        while (true) {
-            int totalCases = 20;
-            int remainingCases;
+        do {
+            int somme = 0;
 
-            do {
-                remainingCases = totalCases;
+            for (int i = 0; i < 5; i++) {
+                int lancer = random.nextInt(6) + 1; // Génère un nombre aléatoire entre 1 et 6
+                System.out.println("Lancer " + (i + 1) + ": " + lancer);
+                somme += lancer;
+            }
 
-                for (int i = 0; i < 5; i++) {
-                    int diceRoll = random.nextInt(6) + 1;
-                    remainingCases -= diceRoll;
+            System.out.println("Somme finale : " + somme);
 
-                    System.out.println("Lancer de dé : " + diceRoll);
-                    System.out.println("Cases restantes : " + remainingCases);
+            // Vérifier si le joueur a gagné, perdu ou est resté à 20
+            String resultat = (somme == 20) ? "Gagné" : "Perdu";
+            System.out.println("Résultat : " + resultat);
 
-                    if (remainingCases == 0) {
-                        System.out.println("Félicitations, vous avez gagné!");
-                        totalSimulations++;
-                        break;
-                    } else if (remainingCases < 0) {
-                        System.out.println("Dommage, vous avez perdu. Réessayez.");
-                        break;
-                    }
+            totalSimulations++;
 
-                    if (i == 4) {
-                        System.out.println("Vous n'avez pas atteint 20 cases en 5 lancers. Réessayez.");
-                    }
-                }
+        } while (somme != 20); 
 
-                if (remainingCases == 0) {
-                    break;
-                }
-
-            } while (true);
-
-            System.out.println("Nombre total de simulations : " + totalSimulations);
-            break;
-        }
+        System.out.println("Nombre total de simulations pour gagner : " + totalSimulations);
     }
 }
